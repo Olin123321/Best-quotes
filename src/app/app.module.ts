@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RankingiComponent } from './rankingi/rankingi.component';
 import { FormComponent } from './form/form.component';
+import { VoteButtonsComponent } from './vote-buttons/vote-buttons.component';
+import { QuotesListComponent } from './quotes-list/quotes-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     RankingiComponent,
-    FormComponent
+    FormComponent,
+    VoteButtonsComponent,
+    QuotesListComponent
   ],
   imports: [
     BrowserModule,
