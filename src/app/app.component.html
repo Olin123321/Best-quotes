@@ -1,27 +1,13 @@
 <!-- Nagłówek -->
-<nav>
-    <div class="nav-wrapper teal darken-3">
-        <span class="brand-logo center">Najlepsze cytaty</span>
-    </div>
-</nav>
+<app-navbar></app-navbar>
 <!-- koniec nagłówka -->
 
 <div class="container q-container">
     <!--Dodawanie cytatu-->
-    <button class="btn-floating teal add-button" (click)="onSwitchForm()">
+    <button class="btn-floating teal add-button">
       <i class="material-icons">add</i>
     </button>
-    <div class="row edit-row" [class.drawer]="showForm">
-        <div class="input-field col s4">
-            <input type="text" placeholder="Autor" [(ngModel)]="quotation.author" />
-        </div>
-        <div class="input-field col s6">
-            <input type="text" placeholder="Cytat" [(ngModel)]="quotation.sentence" />
-        </div>
-        <div class=" input-field col s2 ">
-            <button class="btn small " (click)="addQuote()">Dodaj</button>
-        </div>
-    </div>
+    <app-form (newQuote)="onNewQuote($event)"></app-form>
     <!-- Koniec dodawania cytatu -->
 
     <div class="row ">
@@ -52,28 +38,8 @@
 
         <!-- Sekcja rankigów -->
         <div class="col s4 ">
-            <div class="col s12 ">
-                <h5>Najlepsze</h5>
-                <div class="collection ">
-                    <ng-container *ngFor="let quotation of quotes">
-                        <p class="collection-item " *ngIf="quotation.votes > 0">
-                            <span class="blue lighten-4 badge ">{{quotation.votes}}</span> {{quotation.sentence}}<br />
-                            <span class="blue-text ">{{quotation.author}}</span>
-                        </p>
-                    </ng-container>
-                </div>
-            </div>
-            <div class="col s12 ">
-                <h5>Najgorsze</h5>
-                <div class="collection ">
-                    <ng-container *ngFor="let quotation of quotes">
-                        <p class="collection-item " *ngIf="quotation.votes < 0">
-                            <span class="blue lighten-4 badge ">{{quotation.votes}}</span> {{quotation.sentence}}<br />
-                            <span class="blue-text ">{{quotation.author}}</span>
-                        </p>
-                    </ng-container>
-                </div>
-            </div>
+            <app-rankingi [quotes]="bestQuotes()" title="Najlepsze"></app-rankingi>
+            <app-rankingi [quotes]="worstQuotes()" title="Najgorsze"></app-rankingi>
         </div>
         <!-- Sekcja rankigów -->
     </div>
